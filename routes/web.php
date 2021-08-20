@@ -22,6 +22,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'home']); 
 Route::get('/home', [HomeController::class, 'home']);
 Route::get('/student', [StudentController::class,'index']);
+Route::post('/student/store', [StudentController::class,'store']);
 Route::get('/listall', [HomeController::class, 'listData']);
 Route::get('/listall', [StudentController::class, 'listData']);
+
+Route::get('/api/student', [StudentController::class, 'api_student']);
 

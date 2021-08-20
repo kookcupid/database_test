@@ -41,6 +41,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request->input());
     }
 
     public function show($id)
@@ -60,6 +61,14 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    
+    public function api_student() {
+
+        $student_data = student::all();
+        echo json_encode($student_data);
+
     }
 
     public function toArray($request)
