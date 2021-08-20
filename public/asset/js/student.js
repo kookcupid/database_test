@@ -11,18 +11,7 @@ function initEvent() {
 
   $('#student_code').blur(function() {
     var student_code = $('#student_code').val();
-
-    fn_getStockQty(student_code);
-    console.log(student_code);
-
   });
-
-  $('#option_student').change(function() {
-    var student_code = $('#option_student').val();
-    fn_getStockQty(student_code);
-    console.log(student_code);
-  });
-  
   
 
   $('#code').focus(function() {
@@ -72,19 +61,32 @@ function fn_init_datatable() {
   });
 }
 
-
 function fn_form_validate() {
-  let code = $('#code').val();
-  let name = $('#name').val();
-  let address = $('#address').val();
+  let student_code = $('#student_code').val();
+  let student_fname = $('#student_fname').val();
+  let student_lname = $('#student_lname').val();
+  let student_class = $('#student_class').val();
+  let sex = $('#sex').val();
+  let birth_year = $('#birth_year').val();
 
   error_msg = '';
-  if (code == '') {
-    error_msg = 'กรุณาใส่รหัสลูกค้า';
-  } else if (name == '') {
-    error_msg = 'กรุณาใส่ชื่อลูกค้า';
-  } else if (address == '') {
-    error_msg = 'กรุณาใส่ที่อยู่';
+  if (student_code == '') {
+    error_msg = 'กรุณาใส่รหัสนักเรียน';
+  } 
+    else if (student_fname == '') {
+    error_msg = 'กรุณาใส่ชื่อ';
+  } 
+    else if (student_lname == '') {
+    error_msg = 'กรุณาใส่นามสกุล';
+  }
+    else if (student_class == '') {
+    error_msg = 'กรุณาใส่ระดับชั้น';
+  }
+    else if (sex == '') {
+    error_msg = 'กรุณาใส่เพศ';
+  }
+    else if (birth_year == '') {
+    error_msg = 'กรุณาใส่ปีเกิด';
   }
 
   if (error_msg != '') {
@@ -104,7 +106,7 @@ function add() {
   $('#edit_mode').val('insert');
 
   fn_blankform();
-  $('#exampleModalLabel').text('เพิ่มข้อมูลลูกค้า');
+  $('#exampleModalLabel').text('เพิ่มข้อมูลนักเรียน');
   $('#exampleModal').modal('show');
 
 }
@@ -120,7 +122,7 @@ function edit(id) {
 
   fn_blankform();
 
-  $('#exampleModalLabel').text('แก้ไขข้อมูลลูกค้า');
+  $('#exampleModalLabel').text('แก้ไขข้อมูลนักเรียน');
   $('#exampleModal').modal('show');
 
   $.ajax({
@@ -132,43 +134,27 @@ function edit(id) {
     },
     success: function(callback) {
       
-      // $('#load').hide();
       $('#load').css('visibility', 'hidden');
 
-      console.log(callback.data.customer_code);
-      console.log(callback.data.customer_name);
-      console.log(callback.data.address);
+      console.log(callback.data.student_code);
+      console.log(callback.data.student_fname);
+      console.log(callback.data.student_lname);
+      console.log(callback.data.student_class);
+      console.log(callback.data.sex);
+      console.log(callback.data.birth_year);
       
-      $('#code').val(callback.data.customer_code);
-      $('#name').val(callback.data.customer_name);
-      $('#address').val(callback.data.address);
+      $('#student_code').val(callback.student_code);
+      $('#student_fname').val(callback.student_fname);
+      $('#student_lname').val(callback.student_lname);
+      $('#student_class').val(callback.student_class);
+      $('#sex').val(callback.sex);
+      $('#birth_year').val(callback.birth_year);
 
       $('#save').show();
 
-
     },
   });
 
-
-}
-
-function fn_getStockQty(code) {
-  
-  $.ajax({
-    type: "POST",
-    dataType: 'json',
-    url: "/student/getstock",
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    data: {
-      code: code
-    },
-    success: function(callback) {
-      console.log(callback);
-      $('#stock_qty').val(callback.stock_qty);
-    },
-  });
 }
 
 function confirm_deldata(id) {
@@ -182,10 +168,8 @@ function confirm_deldata(id) {
     })
     .then((willDelete) => {
       if (willDelete) {
-        //swal("Poof! Your imaginary file has been deleted!", {icon: "success",});
         deldata(id);
     } else {
-      //swal("Your imaginary file is safe!");
     }
   });
 
@@ -212,28 +196,43 @@ function deldata(id) {
 }
 
 function fn_blankform() {
-  $('#code').val('');
-  $('#name').val('');
-  $('#address').val('');
-  
+  $('#student_code').val('');
+  $('#student_fname').val('');
+  $('#student_lname').val('');
+  $('#student_class').val();
+  $('#sex').val();
+  $('#birth_year').val();
 }
 
 function fn_save() {
 
-
   var post_data = $('#Form1').serializeArray();
   
-  let code = $('#code').val();
-  let name = $('#name').val();
-  let address = $('#address').val();
+  let student_code = $('#student_code').val();
+  let student_fname = $('#student_fname').val();
+  let student_lname = $('#student_lname').val();
+  let student_class = $('#student_class').val();
+  let sex = $('#sex').val();
+  let birth_year = $('#birth_year').val();
 
   error_msg = '';
-  if (code == '') {
-    error_msg = 'กรุณาใส่รหัสลูกค้า';
-  } else if (name == '') {
+  if (student_code == '') {
+    error_msg = 'กรุณาใส่รหัสนักเรียน';
+  } 
+    else if (student_fname == '') {
     error_msg = 'กรุณาใส่ชื่อ';
-  } else if (address == '') {
-    error_msg = 'กรุณาใส่ที่อยู่';
+  } 
+    else if (student_lname == '') {
+    error_msg = 'กรุณาใส่นามสกุล';
+  }
+    else if (student_class == '') {
+    error_msg = 'กรุณาใส่ระดับชั้น';
+  }
+    else if (sex == '') {
+    error_msg = 'กรุณาใส่เพศ';
+  }
+    else if (birth_year == '') {
+    error_msg = 'กรุณาใส่ปีเกิด';
   }
 
   if (error_msg != '') {

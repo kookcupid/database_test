@@ -11,21 +11,12 @@ use App\Models\Student;
 class StudentController extends Controller
 {
 
-    // public function index() 
-    // {
+    public function index() 
+    {
 
-    //     $student = Student::all();
-    //         return response()->json($student);
-    // }
-
-    // public function home()
-    // {
-    //     $student_data = student::all();
-
-    //     return view('home', array(
-    //         "data" => $student_data
-    //     ));
-    // }
+        $student = Student::all();
+            return response()->json($student);
+    }
 
     public function student() {
 
@@ -63,11 +54,6 @@ class StudentController extends Controller
         echo json_encode($data);
     }
 
-    public function edit_student($id) {
-        $student_update = student::find($id);
-        return view('student.edit');
-    }
-
     public function get_student($id) {
        
         $student_data = student::find($id);
@@ -80,22 +66,9 @@ class StudentController extends Controller
         echo json_encode($response);
     }
 
-    public function delete_student($id) {
-       
-        $student_data = student::find($id);
-       
-        $student_data->delete();
-
-        $response = array(
-            'status' => '00',
-            'msg' => 'complete',
-        );
-        echo json_encode($response);
-    }
-
-    public function update(Request $request ,$id){
-        dd($id);
-
+    public function edit_student($id) {
+        $student_update = student::find($id);
+        return view('student.edit');
     }
 
     public function add_student(Request $request) {
@@ -128,6 +101,24 @@ class StudentController extends Controller
         return redirect(URL::to('/student'));
 
 
+    }
+
+    public function update(Request $request ,$id){
+        dd($id);
+
+    }
+
+    public function delete_student($id) {
+       
+        $student_data = student::find($id);
+       
+        $student_data->delete();
+
+        $response = array(
+            'status' => '00',
+            'msg' => 'complete',
+        );
+        echo json_encode($response);
     }
 
     public function store(Request $request) {

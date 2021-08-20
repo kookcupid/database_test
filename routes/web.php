@@ -15,21 +15,19 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-// Home
+// home
 Route::get('/', [HomeController::class, 'home']); 
 Route::get('/home', [HomeController::class, 'home']);
 
-// Student
+// student
 Route::group(['prefix' => 'student'], function () {
 
 Route::get('/', [StudentController::class, 'student']);
-Route::post('/add', [StudentController::class, 'add_student']);
+Route::get('/listall', [StudentController::class, 'listData']);
+Route::get('/get/{id}', [StudentController::class, 'get_student']);
 Route::get('/edit/{id}', [StudentController::class, 'edit_student']);
 Route::post('/update/{id}', [StudentController::class, 'update_student']);
-Route::get('/get/{id}', [StudentController::class, 'get_student']);
 Route::get('/delete/{id}', [StudentController::class, 'delete_student']);
-Route::get('/listall', [StudentController::class, 'listData']);
-
 Route::post('/store', [StudentController::class,'store']);
 
 // api
