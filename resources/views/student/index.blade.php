@@ -7,7 +7,7 @@
     <div class="row">
       <table id='myTable' class="table table-striped table-hover">
         <thead>
-          <tr>
+        <tr>
             <th>#</th>
             <th>รหัสนักเรียน</th>
             <th>ชื่อ</th>
@@ -27,8 +27,8 @@
             <td>{{$item->student_fname}}</td>
             <td>{{$item->student_lname}}</td>
             <th>{{$item->student_class}}</th>
-            <th>{{$item->sex,}}</th>
-            <th>{{$item->birth_year,}}</th>
+            <th>{{$item->sex}}</th>
+            <th>{{$item->birth_year}}</th>
             <td><a href="javascript:edit({{$item->id}});" class="btn btn-primary">แก้ไข</a></td>
             <td><a href="javascript:confirm_deldata({{$item->id}});" class="btn btn-danger">ลบข้อมูล</a></td>
           </tr>

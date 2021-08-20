@@ -28,7 +28,7 @@ class HomeController extends Controller
         $student_data = student::all();
 
         return view('home', array(
-            "data" => $student_data
+            "student_data" => $student_data,
         ));
     }
 

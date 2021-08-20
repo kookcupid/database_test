@@ -5,7 +5,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 @yield('page-script')
 
@@ -13,5 +13,11 @@
     $(document).ready(function() {
         console.log('jquery is work');
     });
+
+      $(document).ready(function() {
+        flatpickr("#ord_date", {
+            dateFormat: "d/m/Y",
+          });
+      });
 
 </script>
