@@ -15,11 +15,11 @@ class CreateSchoolTable extends Migration
     {
         Schema::create('school', function (Blueprint $table) {
             $table->id();
-            $table->string('student_code', 10);
-            $table->string('student_fname',50);
-            $table->string('student_lname',50);
+            $table->string('student_code', 30);
+            $table->string('student_fname',200);
+            $table->string('student_lname',200);
             $table->string('student_class',10);  
-            $table->string('sex,',10);
+            $table->string('sex',10);
             $table->year('birth_year');
             $table->timestamps();
 

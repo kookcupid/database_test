@@ -1,7 +1,7 @@
 function fn_init_datatable() {
   
   $('#myTable').DataTable({
-    ajax: "/listall",
+    ajax: "/home/listall",
     "paging":  true,
     "ordering": true,
     "info":     false,
