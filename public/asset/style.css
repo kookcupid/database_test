@@ -20,6 +20,12 @@ h3 {
     font-size:60px;
 }
 
+.vertical-center {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .footer-basic {
     padding:40px 0;
     background-color:rgb(107, 106, 106);

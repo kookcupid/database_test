@@ -128,7 +128,7 @@ function edit(id) {
   $.ajax({
     type: "GET",
     dataType: 'json',
-    url: "student/get/" + id,
+    url: "/student/get/" + id,
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
@@ -160,7 +160,7 @@ function edit(id) {
 function confirm_deldata(id) {
 
   swal({
-    title: "Are you sure",
+    title: "คุณต้องการลบข้อมูลหรือไม่ ?",
     text: "ยืนยันการลบข้อมูล ?",
     icon: "warning",
     buttons: true,
@@ -199,9 +199,9 @@ function fn_blankform() {
   $('#student_code').val('');
   $('#student_fname').val('');
   $('#student_lname').val('');
-  $('#student_class').val();
-  $('#sex').val();
-  $('#birth_year').val();
+  $('#student_class').val('');
+  $('#sex').val('');
+  $('#birth_year').val('');
 }
 
 function fn_save() {
@@ -231,7 +231,7 @@ function fn_save() {
     else if (sex == '') {
     error_msg = 'กรุณาใส่เพศ';
   }
-    else if (birth_year == '') {
+  else if (birth_year == '') {
     error_msg = 'กรุณาใส่ปีเกิด';
   }
 
@@ -253,6 +253,8 @@ function fn_save() {
       data: {
         data: post_data,
       },
+
+      
       success: function(callback) {
         console.log(callback);
 

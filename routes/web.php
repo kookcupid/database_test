@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\HomeController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,24 +17,29 @@ use App\Http\Controllers\HomeController;
 */
 
 // home
-Route::get('/', [HomeController::class, 'home']); 
-Route::get('/home', [HomeController::class, 'home']);
+    Route::group(['prefix' => 'home'], function () {
+        
+        Route::get('/', [HomeController::class, 'home']); 
+        Route::get('/home', [HomeController::class, 'home']);
+        Route::get('/listall', [HomeController::class, 'listData']);
+        Route::get('/get/{id}', [HomeController::class, 'get_student']);
+        Route::get('/api/home', [HomeController::class, 'api_home']);
+    });    
 
 // student
-Route::group(['prefix' => 'student'], function () {
+    Route::group(['prefix' => 'student'], function () {
 
-Route::get('/', [StudentController::class, 'student']);
-Route::get('/listall', [StudentController::class, 'listData']);
-Route::get('/get/{id}', [StudentController::class, 'get_student']);
-Route::get('/edit/{id}', [StudentController::class, 'edit_student']);
-Route::post('/update/{id}', [StudentController::class, 'update_student']);
-Route::get('/delete/{id}', [StudentController::class, 'delete_student']);
-Route::post('/store', [StudentController::class,'store']);
+        Route::get('/', [StudentController::class, 'student']);
+        Route::get('/listall', [StudentController::class, 'listData']);
+        Route::get('/get/{id}', [StudentController::class, 'get_student']);
+        Route::get('/edit/{id}', [StudentController::class, 'edit_student']);
+        Route::post('/update/{id}', [StudentController::class, 'update_student']);
+        Route::get('/delete/{id}', [StudentController::class, 'delete_student']);
+        Route::post('/store', [StudentController::class, 'store']);
 
-// api
-Route::get('/api/student', [StudentController::class, 'api_student']);
+        Route::get('/api/student', [StudentController::class, 'api_student']);
+    });
 
-});
 
 
 
